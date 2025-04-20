@@ -10,10 +10,10 @@
 ## TO-DO
 
 - [ ] Study
- - [ ] Title
- - [ ] Project flow
- - [ ] Communication protocol
- - [ ] Sensors
- - [ ] Datasheets
+	- [ ] Title
+	- [ ] Project flow
+	- [ ] Communication protocol
+	- [ ] Sensors
+	- [ ] Datasheets	
 - [ ] Divide Work
 - [ ] [Git maintain](HACKING)
