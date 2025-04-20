@@ -1,0 +1,259 @@
+Git Contribution Guidelines
+
+
+Prerequisites
+=============
+You will need the "git" version control tools.  On Fedora-based
+systems, do "yum install git".  On Debian-based ones install the
+"git-core" package.  Then run "git --version".  If that says it's
+older than version 1.4.4, then you'd do well to get a newer version.
+At worst, just download the latest stable release from
+https://git-scm.com/ and build from source.
+
+
+
+Use the latest upstream sources
+===============================
+Base any changes you make on the latest upstream sources.  You can get
+a copy of the latest with this command:
+
+    git clone https://github.com/sa-ra-ja/Smart-Home.git
+    cd Smart-Home
+
+
+If you have made *no* changes:
+    git pull
+
+If you *have* made changes and mistakenly committed them to "master",
+do the following to put your changes on a private branch, "br", and
+to restore master to its unmodified (relative-to-upstream) state:
+    git checkout -b br
+    git checkout master
+    git reset --hard origin
+
+Then "git pull" should work.
+
+
+
+Your first commit: the quick and dirty way
+==========================================
+First of all, realize that to "commit" a change in git is a purely
+local operation.  It affects only the local repository (the .git/ dir)
+in your current Smart-Home/ hierarchy.
+
+To try this out, modify a file or two.  If you create a new file, you'll
+need to tell git about it with "git add new-file.c".  Commit all changes
+with "git commit -a".  That prompts you for a log message, which should
+include a one-line summary, a blank line, and ChangeLog-style entries
+for all affected files.  More on that below.
+
+Once your change is committed, you can create a proper patch that includes
+a log message and authorship information as well as any permissions
+changes.  Use this command to save that single, most-recent change set:
+
+  git format-patch --stdout -1 > DIFF
+
+The trouble with this approach is that you've just checked in a change
+(remember, it's only local) on the "master" branch, and that's where new
+changes would normally appear when you pull the latest from "upstream".
+When you "pull" from a remote repository to get the latest, your local
+changes on "master" may well induce conflicts.   For this reason, you
+may want to keep "master" free of any local changes, so that you can
+use it to track unadulterated upstream sources.
+
+However, if your cloned directory is for a one-shot patch submission and
+you're going to remove it right afterwards, then this approach is fine.
+Otherwise, for a more sustainable (and more generally useful, IMHO)
+process, read on about "topic" branches.
+
+
+Make your changes on a private "topic" branch
+=============================================
+So you checked out Smart-Home like this:
+
+  git clone https://github.com/sa-ra-ja/Smart-Home.git
+
+Now, cd into the Smart-Home/ directory and run:
+
+  git checkout -b my-topic
+
+That creates the my-topic branch and puts you on it.
+To see which branch you're on, type "git branch".
+Right after the clone, you were on "master" (aka the trunk).
+To get back to the trunk, do this:
+
+  git checkout master
+
+Note 1:
+    Be careful to run "git pull" only when on the "master" branch,
+    not when on a branch.  With newer versions of git, you can't cause
+    trouble if you forget, so this is a good reason to ensure you're
+    using 1.5.3.1 or newer.
+
+Note 2:
+    It's best not to try to switch from one branch to another if
+    you have pending (uncommitted) changes.  Sometimes it works,
+    sometimes the checkout will fail, telling you that your local
+    modifications conflict with changes required to switch branches.
+    However, in any case, you will *not* lose your uncommitted changes.
+    Run "git stash" to temporarily hide uncommitted changes in your
+    local directory, restoring a clean working directory.
+
+Anyhow, get back onto your just-created branch:
+
+  git checkout my-topic
+
+Now, modify some file and commit it:
+
+  git commit some-file.c
+
+Personally, no matter what package I'm working on, I find it useful to
+put the ChangeLog entries *only* in the commit log, initially, unless
+I plan to commit/push right away.  Otherwise, I tend to get unnecessary
+merge conflicts with each rebase (see below).  In Smart-Home, I've gone
+a step further, and no longer maintain an explicit ChangeLog file in
+version control.  Instead, in a git working directory, you can view
+ChangeLog information via "git log".  However, each distribution tarball
+does include a ChangeLog file that is automatically generated from the
+git logs.
+
+So, you've committed a change.  But it's only in your local repository,
+and only on your "my-topic" branch.  Let's say you wait a day, and
+then see that someone else changed something and pushed it to the
+public repository.  Now, you want to update your trunk and "rebase"
+your changes on the branch so that they are once again relative to the
+tip of the trunk.  Currently, your branch is attached to the trunk at
+the next-to-last change set.
+
+First: update the trunk from the public repo:
+[you've first made sure that "git diff" produces no output]
+
+  git checkout master
+  git pull
+
+Now, return to your branch, and "rebase" relative to trunk (master):
+
+  git checkout my-topic
+  git rebase master
+
+If there are no conflicts, this requires no more work from you.
+However, let's say there was one in ChangeLog, since you didn't
+follow my advice and modified it anyway.
+git rebase will tell you there was a conflict and in which
+file, and instruct you to resolve it and then resume with
+"git rebase --continue" once that's done.
+
+So you resolve as usual, by editing ChangeLog (which has the
+usual conflict markers), then type "git rebase --continue".
+That will fail, with a diagnostic telling you to mark
+the file as "conflict resolved" by doing this:
+
+  git add ChangeLog
+
+Then, finally, you can proceed (possibly onto more conflict resolution,
+if there are conflicts in other files):
+
+  git rebase --continue
+
+Once it finishes, your changes on the branch are now relative to
+the tip of the trunk.
+
+Now use git format-patch, as above.
+
+
+Amending the most recent change on your private branch
+======================================================
+Let's say you've just committed a change on your private
+branch, and then realize that something about it is not right.
+It's easy to adjust:
+
+  edit your files # this can include running "git add NEW" or "git rm BAD"
+  git commit --amend -a
+  git format-patch --stdout -1 > your-branch.diff
+
+That replaces the most recent change-set with the revised one.
+
+
+
+
+Avoid trailing white space
+==========================
+You may notice that the only trailing blanks in Smart-Home'
+version-controlled files are in a single directory: tests/pr,
+which contains expected output from various invocations of pr.
+
+Do not add any more trailing blanks anywhere.  While "make syntax-check"
+will alert you if you slip up, it's better to nip any problem in the
+bud, as you're typing.  A good way to help you adapt to this rule is
+to configure your editor to highlight any offending characters in the
+files you edit.  If you use Emacs, customize its font-lock mode
+or use its WhiteSpace mode:
+
+    https://www.emacswiki.org/emacs/WhiteSpace
+
+If you use vim, add this to ~/.vimrc:
+
+    let c_space_errors=1
+    highlight RedundantSpaces ctermbg=red guibg=red
+    match RedundantSpaces /\s\+$\| \+\ze\t/
+
+
+Git can help too, by stopping you from committing any change that would
+add trailing blanks.  The example pre-commit hook contains code to check
+for trailing whitespace and spaces before tabs; enable it by moving it
+to the right place and making sure it is executable:
+
+    mv .git/hooks/pre-commit.sample .git/hooks/pre-commit
+
+With a repository created by git-1.5.6 or older, use this command:
+
+    chmod +x .git/hooks/pre-commit
+
+To manually check for whitespace errors before committing, you can use
+
+    git diff --check
+
+Git also has some settings to enable suitable internal whitespace checks.
+See the manpage for git-apply for details.
+
+
+-------------------------------------------
+
+Miscellaneous useful git commands
+=================================
+
+  * gitk: give a graphical view of the revision graph of the current branch
+  * gitk --all: same, but display all branches
+  * git log: to get most of the same info in text form
+  * git log -p: same as above, but with diffs
+  * git log -p SOME_FILE: same as above, but limit to SOME_FILE
+  * git log -p -2 SOME_FILE: same as above, but print only two deltas
+  * git log -p -1: print the most recently committed change set
+  * git format-patch --stdout -1 > FILE: output the most recently committed
+      change set, in a format suitable to be submitted and/or applied via
+      "git am FILE".
+  * git reset --soft HEAD^: Commit the delta required to restore
+      state to the revision just before HEAD (i.e., next-to-last).
+  * git rebase -i master: run this from on a branch, and it gives
+      you an interface with which you can reorder and modify arbitrary
+      change sets on that branch.
+
+  * if you "misplace" a change set, i.e., via git reset --hard ..., so that
+    it's no longer reachable by any branch, you can use "git fsck" to find
+    its SHA1 and then tag it or cherry-pick it onto an existing branch.
+    For example, run this:
+      git fsck --lost-found HEAD && cd .git/lost-found/commit \
+        && for i in *; do git show $i|grep SOME_IDENTIFYING_STRING \
+        && echo $i; done
+    The "git fsck ..." command creates the .git/lost-found/... hierarchy
+    listing all unreachable objects.  Then the for loop
+    print SHA1s for commits that match via log or patch.
+    For example, say that found 556fbb57216b119155cdda824c98dc579b8121c8,
+    you could run "git show 556fbb57216b119" to examine the change set,
+    or "git checkout -b found 556fbb5721" to give it a branch name.
+    Finally, you might run "git checkout master && git cherry-pick 556fbb5721"
+    to put that change on the tip of "master".
+
+-------------------------------------------
+
+
