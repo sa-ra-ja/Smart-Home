@@ -1,7 +1,7 @@
 # SMART HOME USING IOT AND EMBEDDED SYSTEMS
 
 
-This Smart Home IoT project aims to make humane tasks automatic and adaptive to our personal preferences with consideration for security and risks conserns.
+This Smart Home IoT project aims to make repeatative & mundane tasks automatic and adaptive to our personal preferences with consideration for security and risks conserns.
 
 
 
