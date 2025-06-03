@@ -41,16 +41,17 @@ STM32F407G, ESP-WROOM-32(ESP 32 DEVKIT V1),NODEMCU ESP32(Faculty provided)
 
 ## Sensors
 
-|Type|Model no.|
-|---|---|
-|BULB|LEDs|
-|FAN/MOTOR|High Speed Motor|
+|Type|Model no.|Protocol|
+|---|---|---|
+|BULB|LEDs| - |
+|FAN/MOTOR|High Speed Motor| - |
 |Ultra-Sonic Sensor|HC-SR04|
-|Gas Sensor|MQ135/Flying Fish MQ3|
+|Gas Sensor|[MQ135<sup>*</sup>/Flying Fish MQ3](https://diyprojectslabs.com/gas-sensor-with-arduino/)|
 |Humidity Sensor(optional)||
-|Air Quality Sensor(optional)||
+|Air Quality Sensor(optional)|[MQ135<sup>*</sup>](https://diyprojectslabs.com/gas-sensor-with-arduino/)|
 |Moisture Sensor|Cretile|
 |Buzzer|Cretile|
+
 
 ## TO-DO
 
