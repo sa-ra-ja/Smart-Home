@@ -33,18 +33,24 @@ This Smart Home IoT project aims to make repeatative & mundane tasks automatic a
 |ADC|10-bit|12-bit|
 |Price|$3 - $6|$6 - $12|
 -->
+## Microcontrollers
+
+### Available MCU's
+
+STM32F407G, ESP-WROOM-32(ESP 32 DEVKIT V1),NODEMCU ESP32(Faculty provided) 
 
 ## Sensors
 
 |Type|Model no.|
 |---|---|
 |BULB|LEDs|
-|FAN||
-|MOTOR||
-|Ultra-Sonic Sensor||
-|Gas Sensor|MQ135|
+|FAN/MOTOR|High Speed Motor|
+|Ultra-Sonic Sensor|HC-SR04|
+|Gas Sensor|MQ135/Flying Fish MQ3|
 |Humidity Sensor(optional)||
-|Air Quality Sensor||
+|Air Quality Sensor(optional)||
+|Moisture Sensor|Cretile|
+|Buzzer|Cretile|
 
 ## TO-DO
 
