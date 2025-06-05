@@ -1,0 +1,32 @@
+21:59:05 **** Incremental Build of configuration Debug for project uart_poll ****
+make -j8 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F407G_DISC1 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=soft -mthumb -o "Src/main.o"
+../Src/main.c: In function 'main':
+../Src/main.c:32:5: warning: implicit declaration of function 'GPIO_Init' [-Wimplicit-function-declaration]
+   32 |     GPIO_Init();
+      |     ^~~~~~~~~
+../Src/main.c:33:5: warning: implicit declaration of function 'TIM2_Init' [-Wimplicit-function-declaration]
+   33 |     TIM2_Init();
+      |     ^~~~~~~~~
+../Src/main.c:36:24: warning: implicit declaration of function 'Ultrasonic_Read' [-Wimplicit-function-declaration]
+   36 |         int distance = Ultrasonic_Read();
+      |                        ^~~~~~~~~~~~~~~
+../Src/main.c:37:21: warning: implicit declaration of function 'Read_Water_Sensor' [-Wimplicit-function-declaration]
+   37 |         int water = Read_Water_Sensor();
+      |                     ^~~~~~~~~~~~~~~~~
+../Src/main.c:38:19: warning: implicit declaration of function 'Read_Gas_Sensor' [-Wimplicit-function-declaration]
+   38 |         int gas = Read_Gas_Sensor();
+      |                   ^~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "uart_poll.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/sunbeam/Desktop/mcp/mcpi/Day08/uart_poll/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="uart_poll.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+/opt/st/stm32cubeide_1.18.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.linux64_1.0.0.202410170706/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld: ./Src/main.o: in function `main':
+/home/sunbeam/Desktop/mcp/mcpi/Day08/uart_poll/Debug/../Src/main.c:32:(.text.main+0x6): undefined reference to `GPIO_Init'
+/opt/st/stm32cubeide_1.18.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.linux64_1.0.0.202410170706/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld: /home/sunbeam/Desktop/mcp/mcpi/Day08/uart_poll/Debug/../Src/main.c:33:(.text.main+0xa): undefined reference to `TIM2_Init'
+/opt/st/stm32cubeide_1.18.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.linux64_1.0.0.202410170706/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld: /home/sunbeam/Desktop/mcp/mcpi/Day08/uart_poll/Debug/../Src/main.c:36:(.text.main+0xe): undefined reference to `Ultrasonic_Read'
+/opt/st/stm32cubeide_1.18.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.linux64_1.0.0.202410170706/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld: /home/sunbeam/Desktop/mcp/mcpi/Day08/uart_poll/Debug/../Src/main.c:37:(.text.main+0x14): undefined reference to `Read_Water_Sensor'
+/opt/st/stm32cubeide_1.18.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.linux64_1.0.0.202410170706/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld: /home/sunbeam/Desktop/mcp/mcpi/Day08/uart_poll/Debug/../Src/main.c:38:(.text.main+0x1a): undefined reference to `Read_Gas_Sensor'
+collect2: error: ld returned 1 exit status
+make: *** [makefile:63: uart_poll.elf] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+
+21:59:05 Build Failed. 6 errors, 5 warnings. (took 378ms)
+

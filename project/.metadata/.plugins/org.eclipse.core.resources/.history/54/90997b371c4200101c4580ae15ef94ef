@@ -1,0 +1,8 @@
+#ifndef ULTRASONIC_H_
+#define ULTRASONIC_H_
+
+void ultrasonic_init(void);
+float read_distance_cm(void);
+void delay_us(uint16_t us);
+
+#endif /* ULTRASONIC_H_ */

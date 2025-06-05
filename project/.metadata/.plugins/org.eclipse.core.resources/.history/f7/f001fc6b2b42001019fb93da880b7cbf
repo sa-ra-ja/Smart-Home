@@ -1,0 +1,15 @@
+#include "ultrasonic.h"
+
+uint32_t data = 0;
+double time = 0, dist = 0;
+
+void Ultrasonic_GPIO_Init(void)
+{
+    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+
+    GPIOA->MODER &= ~(0x0000FC00);       // Clear MODER5,6,7
+    GPIOA->MODER |=  (1 << (5 * 2));     // PA5 Output (Trig)
+    GPIOA->MODER |=  (1 << (7 * 2));     // PA7 Output (LED)
+    // PA6 remains input (Echo)
+}
+...
