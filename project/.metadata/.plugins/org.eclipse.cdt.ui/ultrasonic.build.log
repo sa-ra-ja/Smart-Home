@@ -1,0 +1,10 @@
+11:31:26 **** Incremental Build of configuration Debug for project ultrasonic ****
+make -j8 all 
+arm-none-eabi-size  ultrasonic.elf 
+   text	   data	    bss	    dec	    hex	filename
+   3520	      0	   1584	   5104	   13f0	ultrasonic.elf
+Finished building: default.size.stdout
+ 
+
+11:31:26 Build Finished. 0 errors, 0 warnings. (took 136ms)
+

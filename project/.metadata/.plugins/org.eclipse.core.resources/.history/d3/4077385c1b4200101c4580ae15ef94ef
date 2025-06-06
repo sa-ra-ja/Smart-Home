@@ -1,0 +1,63 @@
+/*
+ * ultrasonic.c
+ *
+ *  Created on: Jun 5, 2025
+ *      Author: sunbeam
+ */
+
+
+#include "ultrasonic.h"
+
+#define TRIG_PIN    9   // Example: PA9
+#define ECHO_PIN    8   // Example: PA8
+
+void ultrasonic_init(void)
+{
+    // Enable GPIOA
+    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+
+    // TRIG as output
+    GPIOA->MODER |= (1 << (TRIG_PIN * 2));
+    GPIOA->MODER &= ~(1 << (TRIG_PIN * 2 + 1));
+
+    // ECHO as input
+    GPIOA->MODER &= ~((1 << (ECHO_PIN * 2)) | (1 << (ECHO_PIN * 2 + 1)));
+
+    // Enable TIM2 for delay_us
+    RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;
+    TIM2->PSC = 84 - 1;  // 1 MHz timer (1us resolution @ 84MHz)
+    TIM2->CR1 |= TIM_CR1_CEN;
+}
+
+void delay_us(uint16_t us)
+{
+    TIM2->CNT = 0;
+    while (TIM2->CNT < us);
+}
+
+float read_distance_cm(void)
+{
+    uint32_t start_time = 0, end_time = 0;
+
+    // Send 10us pulse to TRIG
+    GPIOA->ODR &= ~(1 << TRIG_PIN);
+    delay_us(2);
+    GPIOA->ODR |= (1 << TRIG_PIN);
+    delay_us(10);
+    GPIOA->ODR &= ~(1 << TRIG_PIN);
+
+    // Wait for ECHO HIGH
+    while (!(GPIOA->IDR & (1 << ECHO_PIN)));
+
+    start_time = TIM2->CNT;
+
+    // Wait for ECHO LOW
+    while (GPIOA->IDR & (1 << ECHO_PIN));
+
+    end_time = TIM2->CNT;
+
+    uint32_t duration = end_time - start_time;
+
+    float distance = (float)duration / 58.0;
+    return distance;
+}
