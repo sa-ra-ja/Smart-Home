@@ -1,3 +1,0 @@
-../Src/ultrasonic.c:6:6:Ultrasonic_GPIO_Init	1
-../Src/ultrasonic.c:16:6:TIM2_us_Delay	2
-../Src/ultrasonic.c:28:8:Read_Distance	4

@@ -1,3 +1,0 @@
-../Src/sensors.c:4:6:GPIO_Init	1
-../Src/sensors.c:20:5:Read_Water_Sensor	1
-../Src/sensors.c:24:5:Read_Gas_Sensor	1
