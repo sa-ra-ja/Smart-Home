@@ -8,8 +8,9 @@ This Smart Home IoT project aims to make repeatative & mundane tasks automatic a
 ## Links and Guides
 - [nodemcu-firmware github](https://github.com/nodemcu/nodemcu-firmware)
 - [Nodemcu Documentation](https://nodemcu.readthedocs.io/)
-
-
+- [STM32 software](https://www.youtube.com/watch?v=eumKLXNlM0U&list=PLnMKNibPkDnHlWmTyT_6OOcWZH58z_A6V)
+### Deep Dive
+- [STM32 bare minimum i.e. without CubeIDE](https://kleinembedded.com/stm32-without-cubeide-part-1-the-bare-necessities/)
 
 
 <!--
@@ -44,7 +45,7 @@ STM32F407G, ESP-WROOM-32(ESP 32 DEVKIT V1),NODEMCU ESP32(Faculty provided)
 |Type|Model no.|Protocol|
 |---|---|---|
 |BULB|LEDs| - |
-|FAN/MOTOR|High Speed Motor| - |
+|FAN/MOTOR|High Speed Motor,SG92R Micro servo| - |
 |Ultra-Sonic Sensor|HC-SR04|
 |Gas Sensor|[MQ135<sup>*</sup>/Flying Fish MQ3](https://diyprojectslabs.com/gas-sensor-with-arduino/)|
 |Humidity Sensor(optional)||
@@ -52,6 +53,9 @@ STM32F407G, ESP-WROOM-32(ESP 32 DEVKIT V1),NODEMCU ESP32(Faculty provided)
 |Moisture Sensor|Cretile|
 |Buzzer|Cretile|
 
+## Rough Plan
+
+![Image describing rough plan of the project](Rough_plan.jpeg)
 
 ## TO-DO
 
