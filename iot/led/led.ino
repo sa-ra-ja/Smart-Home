@@ -1,13 +1,14 @@
-#define BLYNK_TEMPLATE_ID "TMPL3S78sZF3o"
-#define BLYNK_TEMPLATE_NAME "Fan Controller"
-#define BLYNK_AUTH_TOKEN "tcMrptFDBGrue74HHS4SN-_gINLx0pEQ"
 
-#include <ESP8266WiFi.h>
+
+#define BLYNK_TEMPLATE_ID "TMPL3F3Rcqxu6"
+#define BLYNK_TEMPLATE_NAME "srjclean"
+#define BLYNK_AUTH_TOKEN "dbQeQHfh9buAA9qQj0zWCrugJaoBBZmf"
+
 #include <BlynkSimpleEsp8266.h>
 
 // WiFi credentials
-char ssid[] = ".";
-char pass[] = "123454321";
+char ssid[] = "Sathya";
+char pass[] = "nithya12345";
 
 // Pin definitions
 #define LED1_PIN D0        // LED 1 controlled by Blynk (V0)

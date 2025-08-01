@@ -38,7 +38,7 @@ This Smart Home IoT project aims to make repeatative & mundane tasks automatic a
 
 ### Available MCU's
 
-STM32F407G, ESP-WROOM-32(ESP 32 DEVKIT V1),NODEMCU ESP32(Faculty provided) 
+STM32F407G, ESP-WROOM-32(ESP 32 DEVKIT V1),AMICA NODEMCU ESP32 CP2102(Faculty provided) 
 
 ## Sensors
 

@@ -1,0 +1,12 @@
+Step 1: change wifi-credentials to your mobile hotspot such that your laptop and esp should connect to one common device which is your phone in this case.
+
+Step 2: Flash espserver.ino code to esp8266
+
+Step 3: Observe IP ADDRESS of esp on serial monitor inside ArdiunoIDE
+
+Step 4: send a GET request from laptop to esp using curl or browser with its ip
+	e.g. curl 192.168.223.145/on
+
+
+
+Extra: Add any Digital analog pins to the if-else ladder,expand the functionality.
