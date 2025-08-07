@@ -7,8 +7,8 @@
 #include <BlynkSimpleEsp8266.h>
 
 // WiFi credentials
-char ssid[] = "Sathya";
-char pass[] = "nithya12345";
+char ssid[] = "Redmi K50i";
+char pass[] = "zzzzzzzz";
 
 // Pin definitions
 #define LED1_PIN D0        // LED 1 controlled by Blynk (V0)

@@ -1,4 +1,4 @@
-# SMART HOME USING IOT AND EMBEDDED SYSTEMS
+# SMART HOME USING IOT, EMBEDDED SYSTEMS AND R.T.O.S.
 
 
 This Smart Home IoT project aims to make repeatative & mundane tasks automatic and adaptive to our personal preferences with consideration for security and risks conserns.
@@ -47,6 +47,7 @@ STM32F407G, ESP-WROOM-32(ESP 32 DEVKIT V1),AMICA NODEMCU ESP32 CP2102(Faculty pr
 |BULB|LEDs| - |
 |FAN/MOTOR|High Speed Motor,SG92R Micro servo| - |
 |Ultra-Sonic Sensor|HC-SR04|
+|IR sensor|MH-8 IR|
 |Gas Sensor|[MQ135<sup>*</sup>/Flying Fish MQ3](https://diyprojectslabs.com/gas-sensor-with-arduino/)|
 |Humidity Sensor(optional)||
 |Air Quality Sensor(optional)|[MQ135<sup>*</sup>](https://diyprojectslabs.com/gas-sensor-with-arduino/)|
@@ -59,12 +60,12 @@ STM32F407G, ESP-WROOM-32(ESP 32 DEVKIT V1),AMICA NODEMCU ESP32 CP2102(Faculty pr
 
 ## TO-DO
 
-- [ ] Study
+- [x] Study
 	- [x] Title
 	- [x] Project flow
-	- [ ] Communication protocol
-	- [ ] Sensors
-	- [ ] Datasheets	
+	- [x] Communication protocol
+	- [x] Sensors
+	- [x] Datasheets	
 - [x] Divide Work
 - [x] [Git maintain](HACKING)
 
